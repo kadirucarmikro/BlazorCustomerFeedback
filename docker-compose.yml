@@ -1,0 +1,6 @@
+services:
+  blazorcustomerfeedback:
+    image: ${DOCKER_REGISTRY-}blazorcustomerfeedback
+    build:
+      context: .
+      dockerfile: BlazorCustomerFeedback/Dockerfile

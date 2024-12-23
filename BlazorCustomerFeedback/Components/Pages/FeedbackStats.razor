@@ -1,0 +1,39 @@
+﻿@using BlazorCustomerFeedback.Services
+ 
+@inject IFeedbackService FeedbackService
+
+<div class="container">
+    <h3>Feedback Statistics</h3>
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <canvas id="statusChart"></canvas>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <canvas id="ratingChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@code {
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await InitializeCharts();
+        }
+    }
+
+    private async Task InitializeCharts()
+    {
+        var feedback = await FeedbackService.GetAllFeedbackAsync();
+    }
+}
